@@ -28,7 +28,7 @@ export const AddPhoto = () => {
   })
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3001/photos", data, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
+    axios.post("https://photo-admin-api.herokuapp.com/photos", data, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
       navigate("/");
     });
   }
