@@ -14,6 +14,7 @@ export const AddPhoto = () => {
   const initialValues = {
     title: "",
     description: "",
+    file: null,
   }
 
   useEffect(() => {
@@ -42,6 +43,8 @@ export const AddPhoto = () => {
 
             <ErrorMessage name="description" component="span" className={styles.error} />
             <Field className={styles.input} id="inputAddPhoto" name="description" placeholder="Description" />
+
+            <Field id="file" name="file" type="file" />
 
             <button type="submit">Add Photo</button>
           </Form>
