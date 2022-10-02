@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { AddPhoto } from "./pages/AddPhoto/AddPhoto";
+import { AddPhoto2 } from "./pages/AddPhoto/AddPhoto2";
 import { Photo } from "./pages/Photo/Photo";
 import { Signup } from "./pages/Signup/Signup";
 import { Login } from "./pages/Login/Login";
@@ -21,7 +22,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://photo-admin-api.herokuapp.com/auth/validate", {
+      .get("http://localhost:3001/auth/validate", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -68,6 +69,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addphoto" element={<AddPhoto />} />
+          <Route path="/addphoto2" element={<AddPhoto2 />} />
           <Route path="/photo/:id" element={<Photo />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/signup" element={<Signup />} />

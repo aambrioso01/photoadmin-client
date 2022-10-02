@@ -15,11 +15,11 @@ export const Photo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://photo-admin-api.herokuapp.com/photos/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/photos/${id}`).then((response) => {
       setPhoto(response.data);
     });
 
-    axios.get(`https://photo-admin-api.herokuapp.com/notes/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/notes/${id}`).then((response) => {
       setNotes(response.data);
     });
   }, []);
@@ -27,7 +27,7 @@ export const Photo = () => {
   const addNote = () => {
     axios
       .post(
-        "https://photo-admin-api.herokuapp.com/notes",
+        "http://localhost:3001/notes",
         { content: newNote, PhotoId: id },
         {
           headers: {
@@ -50,7 +50,7 @@ export const Photo = () => {
 
   const deleteNote = (id) => {
     axios
-      .delete(`https://photo-admin-api.herokuapp.com/notes/delete/${id}`, {
+      .delete(`http://localhost:3001/notes/delete/${id}`, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -67,7 +67,7 @@ export const Photo = () => {
 
   const deletePhoto = (id) => {
     axios
-      .delete(`https://photo-admin-api.herokuapp.com/photos/${id}`, {
+      .delete(`http://localhost:3001/photos/${id}`, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -81,7 +81,7 @@ export const Photo = () => {
     if (option === "title") {
       let newTitle = prompt("Enter new title:");
       axios.put(
-        "https://photo-admin-api.herokuapp.com/photos/title",
+        "http://localhost:3001/photos/title",
         { newTitle: newTitle, id: id },
         {
           headers: {
@@ -94,7 +94,7 @@ export const Photo = () => {
     } else {
       let newDescription = prompt("Enter new description:");
       axios.put(
-        "https://photo-admin-api.herokuapp.com/photos/description ",
+        "http://localhost:3001/photos/description ",
         { newDescription: newDescription, id: id },
         {
           headers: {

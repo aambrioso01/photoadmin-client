@@ -16,7 +16,7 @@ export const Signup = () => {
   });
 
   const onSubmit = (data) => {
-    axios.post("https://photo-admin-api.herokuapp.com/auth", data).then(() => {
+    axios.post("http://localhost:3001/auth", data).then(() => {
         console.log(data);
     })
   };
