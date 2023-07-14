@@ -14,7 +14,11 @@ export const AddPhoto = () => {
   const initialValues = {
     title: "",
     description: "",
+<<<<<<< HEAD
     // file: {},
+=======
+    file: null,
+>>>>>>> bf6e69f5296fe111649f143afd554a389308eec7
   }
 
   useEffect(() => {
@@ -61,6 +65,8 @@ export const AddPhoto = () => {
             <input id="file" name="file" type="file" onChange={(event) => {
               setFile(event.currentTarget.files[0]);
             }} />
+
+            <Field id="file" name="file" type="file" />
 
             <button type="submit">Add Photo</button>
           </Form>
