@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/validate", {
+      .get("https://photo-admin-api.herokuapp.com/auth/validate", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },

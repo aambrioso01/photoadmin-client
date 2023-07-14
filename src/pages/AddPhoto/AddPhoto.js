@@ -38,7 +38,7 @@ export const AddPhoto = () => {
     formData.append('title', data.title);
     formData.append('description', data.description);
 
-    axios.post("http://localhost:3001/photos", formData, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
+    axios.post("https://photo-admin-api.herokuapp.com/photos", formData, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
       // navigate("/"); 
     });
   }
