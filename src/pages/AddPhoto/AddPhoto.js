@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
@@ -7,14 +7,18 @@ import styles from "./styles.module.scss";
 import { AuthCtx } from "../../services/AuthCtx";
 
 export const AddPhoto = () => {
-  
+  const [file, setFile] = useState({});
   const navigate = useNavigate();
   const { authState } = useContext(AuthCtx);
 
   const initialValues = {
     title: "",
     description: "",
+<<<<<<< HEAD
+    // file: {},
+=======
     file: null,
+>>>>>>> bf6e69f5296fe111649f143afd554a389308eec7
   }
 
   useEffect(() => {
@@ -26,11 +30,20 @@ export const AddPhoto = () => {
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
+    // file: Yup.mixed(),
   })
 
   const onSubmit = (data) => {
-    axios.post("https://photo-admin-api.herokuapp.com/photos", data, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
-      navigate("/");
+    // console.log(`fileObject: ${upload}, ${upload.title}, ${upload.file.files}`);
+
+    const formData = new FormData();
+
+    formData.append('file', file, file.name);
+    formData.append('title', data.title);
+    formData.append('description', data.description);
+
+    axios.post("https://photo-admin-api.herokuapp.com/photos", formData, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
+      // navigate("/"); 
     });
   }
 
@@ -39,10 +52,19 @@ export const AddPhoto = () => {
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
           <Form className={styles.form}>
             <ErrorMessage name="title" component="span" className={styles.error} />
-            <Field className={styles.input} id="inputAddPhoto" name="title" placeholder="Title" />
+            <Field className={styles.input} id="inputTitle" name="title" placeholder="Title" />
 
             <ErrorMessage name="description" component="span" className={styles.error} />
-            <Field className={styles.input} id="inputAddPhoto" name="description" placeholder="Description" />
+            <Field className={styles.input} id="inputDescr" name="description" placeholder="Description" />
+
+            {/* <ErrorMessage name="file" component="span" className={styles.error} /> */}
+            {/* <Field id="inputAddPhoto" name="file" type="file" onChange={(event) => {
+                    this.setState("file", event.currentTarget.files[0]);
+            }}/> */}
+
+            <input id="file" name="file" type="file" onChange={(event) => {
+              setFile(event.currentTarget.files[0]);
+            }} />
 
             <Field id="file" name="file" type="file" />
 
