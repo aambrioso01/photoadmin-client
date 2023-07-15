@@ -14,11 +14,7 @@ export const AddPhoto = () => {
   const initialValues = {
     title: "",
     description: "",
-<<<<<<< HEAD
     // file: {},
-=======
-    file: null,
->>>>>>> bf6e69f5296fe111649f143afd554a389308eec7
   }
 
   useEffect(() => {
