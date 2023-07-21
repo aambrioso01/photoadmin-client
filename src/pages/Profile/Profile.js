@@ -13,11 +13,11 @@ export const Profile = () => {
   const navigate = useNavigate(); 
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/auth/info/${id}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_ROUTE}/auth/info/${id}`).then((response) => {
       setUsername(response.data.username);
     })
 
-    axios.get(`http://localhost:3001/photos/user/${id}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_ROUTE}/photos/user/${id}`).then((response) => {
       setPhotos(response.data);
     })
   }, []); 

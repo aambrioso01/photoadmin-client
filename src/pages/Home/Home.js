@@ -17,7 +17,7 @@ export const Home = () => {
       navigate(`/login`);
     } else {
       axios
-        .get("http://localhost:3001/photos", {
+        .get(`${process.env.REACT_APP_API_ROUTE}/photos`, {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((response) => {
@@ -34,7 +34,7 @@ export const Home = () => {
   const likePhoto = (photoId) => {
     axios
       .post(
-        "http://localhost:3001/like",
+        `${process.env.REACT_APP_API_ROUTE}/like`,
         { PhotoId: photoId },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )
@@ -75,7 +75,7 @@ export const Home = () => {
           <div key={key} className={styles.photo}>  
             <div
               className={styles.description}
-              style={{backgroundImage: `url("http://localhost:3001/images/${uriPath}")`}}
+              style={{backgroundImage: `url("${process.env.REACT_APP_API_ROUTE}/images/${uriPath}")`}}
               onClick={() => {
                 navigate(`/photo/${value.id}`);
               }}
