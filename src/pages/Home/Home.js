@@ -72,25 +72,27 @@ export const Home = () => {
       {photos.map((value, key) => {
         var uriPath = encodeURI(value.filePath);
         return (
-          <div key={key} className={styles.photo}>  
-            <div
-              className={styles.description}
-              style={{backgroundImage: `url("${process.env.REACT_APP_API_ROUTE}/images/${uriPath}")`}}
-              onClick={() => {
-                navigate(`/photo/${value.id}`);
-              }}
-            >
-            </div>
-            <div className={styles.footer}>
-              <p className={styles.title}>{value.title}</p>
-              {/* <p className={styles.creator}><Link to={`profile/${value.UserId}`}>{value.username}</Link></p> */}
-              <ThumbUpIcon
+          <div className={styles.wrapper}>
+            <div key={key} className={styles.photo}>  
+              <div
+                className={styles.description}
+                style={{backgroundImage: `url("${process.env.REACT_APP_API_ROUTE}/images/${uriPath}")`}}
                 onClick={() => {
-                  likePhoto(value.id);
+                  navigate(`/photo/${value.id}`);
                 }}
-                className={!likedPhotos.includes(value.id) ? styles.unlike : ""}
-              />
-              <label>{value.Likes.length}</label>
+              >
+              </div>
+              <div className={styles.footer}>
+                <p className={styles.title}>{value.title}</p>
+                {/* <p className={styles.creator}><Link to={`profile/${value.UserId}`}>{value.username}</Link></p> */}
+                <ThumbUpIcon
+                  onClick={() => {
+                    likePhoto(value.id);
+                  }}
+                  className={!likedPhotos.includes(value.id) ? styles.unlike : ""}
+                />
+                <label>{value.Likes.length}</label>
+              </div>
             </div>
           </div>
         );
