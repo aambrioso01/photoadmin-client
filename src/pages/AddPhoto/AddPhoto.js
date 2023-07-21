@@ -3,8 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import styles from "./styles.module.scss";
+// import styles from "./styles.module.scss";
 import { AuthCtx } from "../../services/AuthCtx";
+import styles from "../../styles/form.module.scss";
 
 export const AddPhoto = () => {
   const [file, setFile] = useState({});
@@ -38,7 +39,7 @@ export const AddPhoto = () => {
     formData.append('title', data.title);
     formData.append('description', data.description);
 
-    axios.post("https://photo-admin-api.herokuapp.com/photos", formData, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
+    axios.post("http://localhost:3001/photos", formData, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
       // navigate("/"); 
     });
   }
@@ -58,11 +59,11 @@ export const AddPhoto = () => {
                     this.setState("file", event.currentTarget.files[0]);
             }}/> */}
 
-            <input id="file" name="file" type="file" onChange={(event) => {
+            <input className={styles.file} id="file" name="file" type="file" onChange={(event) => {
               setFile(event.currentTarget.files[0]);
             }} />
 
-            <Field id="file" name="file" type="file" />
+            {/* <Field id="file" name="file" type="file" /> */}
 
             <button type="submit">Add Photo</button>
           </Form>

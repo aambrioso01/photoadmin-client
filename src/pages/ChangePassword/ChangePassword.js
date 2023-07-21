@@ -7,7 +7,7 @@ export const ChangePassword = () => {
 
   const changePassword = () => {
     axios.put(
-      "https://photo-admin-api.herokuapp.com/auth/change",
+      "http://localhost:3001/auth/change",
       { currPassword: currPassword, newPassword: newPassword },
       {
         headers: {

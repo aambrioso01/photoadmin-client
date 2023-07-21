@@ -1,0 +1,23 @@
+.container {
+    width: 100%;
+
+    .photo {
+        width: 100%;
+
+        img {
+            width: 100%;
+        }
+    }
+    
+    .info {
+        width: 700px;
+        max-width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        b {
+            font-size: 1.2rem;
+        }
+    }
+}

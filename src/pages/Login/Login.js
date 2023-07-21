@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthCtx } from "../../services/AuthCtx";
+import styles from "../../styles/form.module.scss";
+
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +17,7 @@ export const Login = () => {
   const login = () => {
     const data = {username: username, password: password}
     
-    axios.post("https://photo-admin-api.herokuapp.com/auth/login", data).then((response) => {
+    axios.post("http://localhost:3001/auth/login", data).then((response) => {
         if (response.data.error) alert(response.data.error);
         else {
           localStorage.setItem("accessToken", response.data.token);
@@ -30,22 +32,26 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="username"
-        onChange={(event) => {
-          setUsername(event.target.value);
-        }}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-      />
-      <button onClick={login}>login</button>
+    <div className={styles.container}>
+      <div className={styles.form}>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="username"
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        />
+        <input
+          className={styles.input}
+          type="password"
+          placeholder="password"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
+      <button onClick={login}>Login</button>
+      </div>
     </div>
   );
 };

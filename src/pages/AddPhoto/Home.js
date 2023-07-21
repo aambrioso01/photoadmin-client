@@ -17,7 +17,7 @@ export const Home = () => {
       navigate(`/login`);
     } else {
       axios
-        .get("https://photo-admin-api.herokuapp.com/photos", {
+        .get("http://localhost:3001/photos", {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((response) => {
@@ -34,7 +34,7 @@ export const Home = () => {
   const likePhoto = (photoId) => {
     axios
       .post(
-        "https://photo-admin-api.herokuapp.com/like",
+        "http://localhost:3001/like",
         { PhotoId: photoId },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )

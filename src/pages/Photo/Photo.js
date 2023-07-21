@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
+import form from "../../styles/form.module.scss";
 import { AuthCtx } from "../../services/AuthCtx";
 
 export const Photo = () => {
@@ -15,11 +16,11 @@ export const Photo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://photo-admin-api.herokuapp.com/photos/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/photos/${id}`).then((response) => {
       setPhoto(response.data);
     });
 
-    axios.get(`https://photo-admin-api.herokuapp.com/notes/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/notes/${id}`).then((response) => {
       setNotes(response.data);
     });
   }, []);
@@ -27,7 +28,7 @@ export const Photo = () => {
   const addNote = () => {
     axios
       .post(
-        "https://photo-admin-api.herokuapp.com/notes",
+        "http://localhost:3001/notes",
         { content: newNote, PhotoId: id },
         {
           headers: {
@@ -50,7 +51,7 @@ export const Photo = () => {
 
   const deleteNote = (id) => {
     axios
-      .delete(`https://photo-admin-api.herokuapp.com/notes/delete/${id}`, {
+      .delete(`http://localhost:3001/notes/delete/${id}`, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -67,7 +68,7 @@ export const Photo = () => {
 
   const deletePhoto = (id) => {
     axios
-      .delete(`https://photo-admin-api.herokuapp.com/photos/${id}`, {
+      .delete(`http://localhost:3001/photos/${id}`, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -81,7 +82,7 @@ export const Photo = () => {
     if (option === "title") {
       let newTitle = prompt("Enter new title:");
       axios.put(
-        "https://photo-admin-api.herokuapp.com/photos/title",
+        "http://localhost:3001/photos/title",
         { newTitle: newTitle, id: id },
         {
           headers: {
@@ -94,7 +95,7 @@ export const Photo = () => {
     } else {
       let newDescription = prompt("Enter new description:");
       axios.put(
-        "https://photo-admin-api.herokuapp.com/photos/description ",
+        "http://localhost:3001/photos/description ",
         { newDescription: newDescription, id: id },
         {
           headers: {
@@ -108,9 +109,10 @@ export const Photo = () => {
     
   return (
     <div className={styles.container}>
-      <div style={{ color: "red" }}>
-        {photo.id}
-
+      <div className={styles.photo}>
+        <img src={`http://localhost:3001/images/${encodeURIComponent(photo.filePath)}`} alt={photo.description} />
+      </div>
+      <div className={styles.info}>
         <h1
           onClick={() => {
             if (authState.username === photo.username) {
@@ -129,15 +131,16 @@ export const Photo = () => {
         >
           {photo.description}
         </p>
-        <p>{photo.username}</p>
+        <p>created by <b>{photo.username}</b></p>
         {authState.username === photo.username && (
           <button onClick={() => deletePhoto(photo.id)}>Delete</button>
         )}
       </div>
 
-      <div className={styles.notes}>
-        <div className={styles.input}>
+      <div className={form.container}>
+        <div className={form.form}>
           <input
+            className={form.input}
             type="text"
             placeholder="Leave a note..."
             onChange={(event) => {

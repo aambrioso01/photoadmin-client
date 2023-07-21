@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import styles from "./styles.module.scss";
+import styles from "../../styles/form.module.scss";
 
 export const Signup = () => {
   const initialValues = {
@@ -16,7 +16,7 @@ export const Signup = () => {
   });
 
   const onSubmit = (data) => {
-    axios.post("https://photo-admin-api.herokuapp.com/auth", data).then(() => {
+    axios.post("http://localhost:3001/auth", data).then(() => {
         console.log(data);
     })
   };
