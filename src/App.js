@@ -12,6 +12,11 @@ import axios from "axios";
 import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
 import { Profile } from "./pages/Profile/Profile";
 import { ChangePassword } from "./pages/ChangePassword/ChangePassword";
+import { AiFillHome } from "react-icons/ai";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import { AiOutlineLogin } from "react-icons/ai";
+import { MdCreate } from "react-icons/md";
+
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -22,7 +27,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://photo-admin-api.herokuapp.com/auth/validate", {
+      .get("http://localhost:3001/auth/validate", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -54,16 +59,24 @@ function App() {
       <BrowserRouter>
         {!authState.status ? (
           <>
-            <Link to="/login"> Login</Link>
-            <Link to="/signup"> Sign up</Link>
+            <div className="header">
+              <span className="nav">
+                <Link to="/login"><AiOutlineLogin /> Login</Link>
+                <Link to="/signup"><MdCreate /> Sign up</Link>
+              </span>
+            </div>
           </>
         ) : (
-          <>
-            <Link to="addphoto"> Add photo</Link>
-            <Link to="/"> Home</Link>
-            <button onClick={logout}>Logout</button>
-            <h1>{authState.username}</h1>
-          </>
+          <div className="header">
+            <span className="nav">
+              <Link to="/"><AiFillHome /> Home</Link>
+              <Link to="addphoto"><AiOutlineCloudUpload /> Upload</Link>
+            </span>
+            <span className="currentUser">
+              <h2>{authState.username}</h2>
+              <button onClick={logout}>Logout</button>
+            </span>
+          </div>
         )}
 
         <Routes>

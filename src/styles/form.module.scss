@@ -1,0 +1,33 @@
+@use "/src/styles/vars.module.scss";
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
+    
+    .form {
+        padding-block: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(vars.$primary, 0.15);
+        width: 400px;
+        max-width: 80%;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.616);
+        
+        .input {
+            width: 80%;
+            margin: 0.8rem;
+            height: 1.8rem;
+            border-radius: 5px;
+        }
+
+        .file {
+            margin-block: 0.5rem;
+        }
+
+    }
+}

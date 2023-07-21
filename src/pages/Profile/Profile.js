@@ -13,11 +13,11 @@ export const Profile = () => {
   const navigate = useNavigate(); 
 
   useEffect(() => {
-    axios.get(`https://photo-admin-api.herokuapp.com/auth/info/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/auth/info/${id}`).then((response) => {
       setUsername(response.data.username);
     })
 
-    axios.get(`https://photo-admin-api.herokuapp.com/photos/user/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/photos/user/${id}`).then((response) => {
       setPhotos(response.data);
     })
   }, []); 

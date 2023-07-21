@@ -17,7 +17,7 @@ export const Home = () => {
       navigate(`/login`);
     } else {
       axios
-        .get("https://photo-admin-api.herokuapp.com/photos", {
+        .get("http://localhost:3001/photos", {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((response) => {
@@ -34,7 +34,7 @@ export const Home = () => {
   const likePhoto = (photoId) => {
     axios
       .post(
-        "https://photo-admin-api.herokuapp.com/like",
+        "http://localhost:3001/like",
         { PhotoId: photoId },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )
@@ -70,19 +70,20 @@ export const Home = () => {
   return (
     <div className={styles.container}>
       {photos.map((value, key) => {
+        var uriPath = encodeURI(value.filePath);
         return (
-          <div key={key} className={styles.photo}>
-            <div className={styles.title}>{value.title}</div>
+          <div key={key} className={styles.photo}>  
             <div
               className={styles.description}
+              style={{backgroundImage: `url("http://localhost:3001/images/${uriPath}")`}}
               onClick={() => {
                 navigate(`/photo/${value.id}`);
               }}
             >
-              {value.description}
             </div>
             <div className={styles.footer}>
-              <p><Link to={`profile/${value.UserId}`}>{value.username}</Link></p>
+              <p className={styles.title}>{value.title}</p>
+              {/* <p className={styles.creator}><Link to={`profile/${value.UserId}`}>{value.username}</Link></p> */}
               <ThumbUpIcon
                 onClick={() => {
                   likePhoto(value.id);
