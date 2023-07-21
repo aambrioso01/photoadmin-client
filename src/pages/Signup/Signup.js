@@ -16,7 +16,7 @@ export const Signup = () => {
   });
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3001/auth", data).then(() => {
+    axios.post(`${process.env.REACT_APP_API_ROUTE}/auth`, data).then(() => {
         console.log(data);
     })
   };

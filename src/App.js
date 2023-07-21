@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/auth/validate", {
+      .get(`${process.env.REACT_APP_API_ROUTE}/auth/validate`, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },

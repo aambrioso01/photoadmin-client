@@ -15,11 +15,11 @@ export const Photo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/photos/${id}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_ROUTE}/photos/${id}`).then((response) => {
       setPhoto(response.data);
     });
 
-    axios.get(`http://localhost:3001/notes/${id}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_ROUTE}/notes/${id}`).then((response) => {
       setNotes(response.data);
     });
   }, []);
@@ -27,7 +27,7 @@ export const Photo = () => {
   const addNote = () => {
     axios
       .post(
-        "http://localhost:3001/notes",
+        `${process.env.REACT_APP_API_ROUTE}/notes`,
         { content: newNote, PhotoId: id },
         {
           headers: {
@@ -50,7 +50,7 @@ export const Photo = () => {
 
   const deleteNote = (id) => {
     axios
-      .delete(`http://localhost:3001/notes/delete/${id}`, {
+      .delete(`${process.env.REACT_APP_API_ROUTE}/notes/delete/${id}`, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -67,7 +67,7 @@ export const Photo = () => {
 
   const deletePhoto = (id) => {
     axios
-      .delete(`http://localhost:3001/photos/${id}`, {
+      .delete(`${process.env.REACT_APP_API_ROUTE}/photos/${id}`, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -81,7 +81,7 @@ export const Photo = () => {
     if (option === "title") {
       let newTitle = prompt("Enter new title:");
       axios.put(
-        "http://localhost:3001/photos/title",
+        `${process.env.REACT_APP_API_ROUTE}/photos/title`,
         { newTitle: newTitle, id: id },
         {
           headers: {
@@ -94,7 +94,7 @@ export const Photo = () => {
     } else {
       let newDescription = prompt("Enter new description:");
       axios.put(
-        "http://localhost:3001/photos/description ",
+        `${process.env.REACT_APP_API_ROUTE}/photos/description`,
         { newDescription: newDescription, id: id },
         {
           headers: {

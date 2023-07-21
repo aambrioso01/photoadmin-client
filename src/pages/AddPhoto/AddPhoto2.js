@@ -34,7 +34,7 @@ export const AddPhoto2 = () => {
 
     data.append('file', file, file.name);
     
-    axios.post("http://localhost:3001/photos", data, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
+    axios.post(`${process.env.REACT_APP_API_ROUTE}/photos`, data, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
       // navigate("/"); 
     });
   }
