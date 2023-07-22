@@ -30,7 +30,8 @@ export const AddPhoto = () => {
     // file: Yup.mixed(),
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+
     // console.log(`fileObject: ${upload}, ${upload.title}, ${upload.file.files}`);
 
     const formData = new FormData();
@@ -40,8 +41,11 @@ export const AddPhoto = () => {
     formData.append('description', data.description);
 
     axios.post(`${process.env.REACT_APP_API_ROUTE}/photos`, formData, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
-      // navigate("/"); 
     });
+    
+    await new Promise((r) => setTimeout(r, 500));
+
+    navigate("/"); 
   }
 
   return (
