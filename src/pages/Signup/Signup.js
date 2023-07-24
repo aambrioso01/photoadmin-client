@@ -38,7 +38,7 @@ export const Signup = () => {
                             console.log(data);
                         })
                         await new Promise((r) => setTimeout(r, 500));
-                        alert(JSON.stringify(`Hello ${data.username}! Your account has been created.`, null, 2));
+                        alert(`Hello ${data.username}! Your account has been created.`);
                         navigate("/");
                       }}
           validationSchema={validationSchema}
