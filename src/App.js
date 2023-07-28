@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { AddPhoto } from "./pages/AddPhoto/AddPhoto";
-import { AddPhoto2 } from "./pages/AddPhoto/AddPhoto2";
 import { Photo } from "./pages/Photo/Photo";
 import { Signup } from "./pages/Signup/Signup";
 import { Login } from "./pages/Login/Login";
@@ -16,7 +15,6 @@ import { AiFillHome } from "react-icons/ai";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdCreate } from "react-icons/md";
-
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -61,6 +59,7 @@ function App() {
           <>
             <div className="header">
               <span className="nav">
+                <img width={50} height={50} src="/logo.png" alt="logo" />
                 <Link to="/login"><AiOutlineLogin /> Login</Link>
                 <Link to="/signup"><MdCreate /> Sign up</Link>
               </span>
@@ -69,6 +68,7 @@ function App() {
         ) : (
           <div className="header">
             <span className="nav">
+              <img width={50} height={50} src="/logo.png" alt="logo" />
               <Link to="/"><AiFillHome /> Home</Link>
               <Link to="addphoto"><AiOutlineCloudUpload /> Upload</Link>
             </span>
