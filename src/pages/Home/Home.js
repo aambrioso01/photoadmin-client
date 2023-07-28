@@ -43,11 +43,11 @@ export const Home = () => {
           photos.map((photo) => {
             if (photo.id === photoId) {
               if (response.data.liked) {
-                return { ...photo, Likes: [...photo.Likes, 0] };
+                return { ...photo, likes: [...photo.likes, 0] };
               } else {
-                const temp = photo.Likes;
+                const temp = photo.likes;
                 temp.pop();
-                return { ...photo, Likes: temp };
+                return { ...photo, likes: temp };
               }
             } else {
               return photo;
@@ -71,6 +71,7 @@ export const Home = () => {
     <div className={styles.container}>
       {photos.map((value, key) => {
         var uriPath = encodeURI(value.filePath);
+
         return (
           <div className={styles.wrapper}>
             <div key={key} className={styles.photo}>  
@@ -91,7 +92,7 @@ export const Home = () => {
                   }}
                   className={!likedPhotos.includes(value.id) ? styles.unlike : ""}
                 />
-                <label>{value.Likes.length}</label>
+                {/* <label>{value.likes? value.likes.length : 0}</label> */}
               </div>
             </div>
           </div>

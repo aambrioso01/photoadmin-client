@@ -82,7 +82,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addphoto" element={<AddPhoto />} />
-          <Route path="/addphoto2" element={<AddPhoto2 />} />
+          {/* <Route path="/addphoto2" element={<AddPhoto2 />} /> */}
           <Route path="/photo/:id" element={<Photo />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/signup" element={<Signup />} />

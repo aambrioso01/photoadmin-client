@@ -35,7 +35,7 @@ export const Signup = () => {
           initialValues={initialValues}
           onSubmit={async (data) => {
                         axios.post(`${process.env.REACT_APP_API_ROUTE}/auth`, data).then(() => {
-                            console.log(data);
+                            // console.log(data);
                         })
                         await new Promise((r) => setTimeout(r, 500));
                         alert(`Hello ${data.username}! Your account has been created.`);
