@@ -31,9 +31,6 @@ export const AddPhoto = () => {
   })
 
   const onSubmit = async (data) => {
-
-    // console.log(`fileObject: ${upload}, ${upload.title}, ${upload.file.files}`);
-
     const formData = new FormData();
 
     formData.append('file', file, file.name);
