@@ -106,11 +106,11 @@ export const Photo = () => {
         setPhoto({...photo, description : newDescription });
       }
     };
-    
+
   return (
     <div className={styles.container}>
       <div className={styles.photo}>
-        <img src={`${process.env.REACT_APP_API_ROUTE}/images/${encodeURIComponent(photo.filePath)}`} alt={photo.description} />
+        <img src={photo.filePath} alt={photo.description} />
       </div>
       <div className={styles.info}>
         <h1
