@@ -70,14 +70,13 @@ export const Home = () => {
   return (
     <div className={styles.container}>
       {photos.map((value, key) => {
-        var uriPath = encodeURI(value.filePath);
 
         return (
           <div className={styles.wrapper}>
             <div key={key} className={styles.photo}>  
               <div
                 className={styles.description}
-                style={{backgroundImage: `url("${process.env.REACT_APP_API_ROUTE}/images/${uriPath}")`}}
+                style={{backgroundImage: `url("${value.filePath}")`}}
                 onClick={() => {
                   navigate(`/photo/${value.id}`);
                 }}
