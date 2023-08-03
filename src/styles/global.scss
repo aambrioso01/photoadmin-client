@@ -57,5 +57,7 @@ button {
     display: flex;
     align-items: center;
     margin-inline-end: 2rem;
+    flex-direction: column;
+    height: 50px;
   }
 }

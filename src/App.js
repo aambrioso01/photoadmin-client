@@ -73,7 +73,7 @@ function App() {
               <Link to="addphoto"><AiOutlineCloudUpload /> Upload</Link>
             </span>
             <span className="currentUser">
-              <h2>{authState.username}</h2>
+              <b>{authState.username}</b>
               <button onClick={logout}>Logout</button>
             </span>
           </div>

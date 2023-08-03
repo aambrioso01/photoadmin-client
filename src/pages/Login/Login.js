@@ -32,6 +32,10 @@ export const Login = () => {
 
   return (
     <div className={styles.container}>
+
+      <img src="/photoscope-big.png" width={800} alt="photoscope"/>
+
+
       <div className={styles.form}>
         <input
           className={styles.input}

@@ -5,14 +5,17 @@
   height: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));;
-  gap: 1rem;
-  padding-block: 1rem;
+  gap: 10px;
+  padding: 20px 0;
+  margin: 10px 0;
 }
 
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 200px;
 
   .photo {
     width: 200px;
@@ -29,7 +32,16 @@
     &:hover {
       box-shadow: rgba(252, 252, 252, 0.2) 0px 7px 29px 0px;
       cursor: pointer;
-      transform: scale(1.1);
+      transform: scale(0.95);
+      border: 5px inset transparent;
+      border-radius: 20px;
+      background:
+        linear-gradient(black, black) padding-box,
+        linear-gradient(
+          45deg,
+          #ff52e5,
+          #f6d242
+        ) border-box;
     }
   
     .description {
@@ -78,20 +90,6 @@
         font-size: 0.5rem;
         padding-inline: 1rem;
       }
-    }
-  }
-}
-
-@media screen and (max-width: 630px) {
-  .photo {
-    margin: 0.1rem;
-    .footer {
-      display: none;
-    }
-
-    .description {
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
     }
   }
 }

@@ -31,6 +31,9 @@ export const Signup = () => {
 
   return (
     <div className={styles.container}>
+
+        <img src="/photoscope-big.png" width={800} alt="photoscope"/>
+
         <Formik
           initialValues={initialValues}
           onSubmit={async (data) => {

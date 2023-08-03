@@ -2,9 +2,15 @@
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: calc(100vh - 60px);
+    flex-direction: column;
+
+    img {
+        width: 800px;
+        max-width: 80%;
+    }
     
     .form {
         padding-block: 2rem;

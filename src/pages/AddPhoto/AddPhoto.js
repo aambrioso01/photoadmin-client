@@ -40,7 +40,7 @@ export const AddPhoto = () => {
     axios.post(`${process.env.REACT_APP_API_ROUTE}/photos`, formData, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
     });
     
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 1000));
 
     navigate("/"); 
   }
