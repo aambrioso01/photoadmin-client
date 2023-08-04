@@ -39,6 +39,11 @@
 
         }
 
+        .error {
+            color: vars.$error;
+            font-weight: bold;
+        }
+
         .file {
             margin-block: 0.5rem;
         }
@@ -46,8 +51,8 @@
         button {
             font-size: 1rem;
             margin: 0.5rem;
-            padding: 0.2rem;
-            width: 10ch;
+            padding: 0.4rem;
+            width: 12ch;
             height: 2rem;
             border-radius: 10px;
             background-color: rgb(46, 61, 154);
