@@ -6,7 +6,7 @@ export const Kaleidoscope = () => {
     const w = window.innerWidth;
     const h = window.innerHeight;
     const scene = new THREE.Scene();
-    // scene.background = new THREE.Color(1, 0, 0);
+    scene.background = new THREE.Color("rgb(25, 25, 25)");
     const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
     camera.position.z = 3.5;
     const renderer = new THREE.WebGLRenderer();
@@ -66,6 +66,7 @@ export const Kaleidoscope = () => {
 
     for (let i = -1; i < 6; i += 1) {
       scene.add(getHex(i));
+      scene.background = new THREE.Color("rgb(25, 25, 25)");
     }
 
     // debug view
