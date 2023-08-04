@@ -5,6 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { AuthCtx } from "../../services/AuthCtx";
+import { Kaleidoscope } from '../Landing/Kaleidoscope';
 
 export const Home = () => {
   const [photos, setPhotos] = useState([]);
@@ -13,22 +14,28 @@ export const Home = () => {
   const { authState } = useContext(AuthCtx);
 
   useEffect(() => {
-    if (!localStorage.getItem('accessToken')) {
-      navigate(`/login`);
-    } else {
-      axios
-        .get(`${process.env.REACT_APP_API_ROUTE}/photos`, {
-          headers: { accessToken: localStorage.getItem("accessToken") },
-        })
-        .then((response) => {
-          setPhotos(response.data.allPhotos);
-          setLikedPhotos(
-            response.data.likedPhotos.map((like) => {
-              return like.PhotoId;
-            })
-          );
-        });
-    }
+    // if (!localStorage.getItem('accessToken')) {
+    axios
+      .get(`${process.env.REACT_APP_API_ROUTE}/photos`, {
+        headers: { accessToken: null },
+      })
+      .then((response) => {
+        setPhotos(response.data.allPhotos);
+      });
+    // } else {
+    //   axios
+    //     .get(`${process.env.REACT_APP_API_ROUTE}/photos`, {
+    //       headers: { accessToken: localStorage.getItem("accessToken") },
+    //     })
+    //     .then((response) => {
+    //       setPhotos(response.data.allPhotos);
+    //       setLikedPhotos(
+    //         response.data.likedPhotos.map((like) => {
+    //           return like.PhotoId;
+    //         })
+    //       );
+    //     });
+    // }
   }, []);
 
   const likePhoto = (photoId) => {
@@ -68,35 +75,37 @@ export const Home = () => {
   };
 
   return (
-    <div className={styles.container}>
-      {photos.map((value, key) => {
+    <>
+      <div className={styles.container}>
+        {photos.map((value, key) => {
 
-        return (
-          <div className={styles.wrapper}>
-            <div key={key} className={styles.photo}>  
-              <div
-                className={styles.description}
-                style={{backgroundImage: `url("${value.filePath}")`}}
-                onClick={() => {
-                  navigate(`/photo/${value.id}`);
-                }}
-              >
-              </div>
-              <div className={styles.footer}>
-                <p className={styles.title}>{value.title}</p>
-                {/* <p className={styles.creator}><Link to={`profile/${value.UserId}`}>{value.username}</Link></p> */}
-                <ThumbUpIcon
+          return (
+            <div key={value.id} className={styles.wrapper}>
+              <div key={key} className={styles.photo}>
+                <div
+                  className={styles.description}
+                  style={{ backgroundImage: `url("${value.filePath}")` }}
                   onClick={() => {
-                    likePhoto(value.id);
+                    navigate(`/photo/${value.id}`);
                   }}
-                  className={!likedPhotos.includes(value.id) ? styles.unlike : ""}
-                />
-                {/* <label>{value.likes? value.likes.length : 0}</label> */}
+                >
+                </div>
+                <div className={styles.footer}>
+                  <p className={styles.title}>{value.title}</p>
+                  {/* <p className={styles.creator}><a href={`profile/${value.UserId}`}>{value.username}</a></p> */}
+                  {/* <ThumbUpIcon
+                    onClick={() => {
+                      likePhoto(value.id);
+                    }}
+                    className={!likedPhotos.includes(value.id) ? styles.unlike : ""}
+                  /> */}
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+      {/* <Kaleidoscope /> */}
+    </>
   );
 };
