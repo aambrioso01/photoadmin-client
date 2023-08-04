@@ -32,7 +32,8 @@ export const Signup = () => {
   return (
     <div className={styles.container}>
 
-        <img src="/photoscope-big.png" width={800} alt="photoscope"/>
+        <img src="/photoscope-big.png" width={300} alt="photoscope"/>
+        <img src="/logo.png" width={50} alt="photoscope"/>
 
         <Formik
           initialValues={initialValues}

@@ -24,6 +24,7 @@ module.exports = (env) => {
     prev[`process.env.${next}`] = JSON.stringify(fileEnv[next]);
     return prev;
   }, {});
+  
 
   return {
     plugins: [

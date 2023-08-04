@@ -25,7 +25,7 @@ export const Login = () => {
             id: response.data.id,
             status: true,
           });
-          navigate("/");
+          navigate("/home");
         }
     })
   };
@@ -33,8 +33,10 @@ export const Login = () => {
   return (
     <div className={styles.container}>
 
-      <img src="/photoscope-big.png" width={800} alt="photoscope"/>
-
+      <span className={styles.banner}>
+        <img src="/photoscope-big.png" width={300} alt="photoscope"/>
+        <img src="/logo.png" width={50} alt="photoscope"/>
+      </span>
 
       <div className={styles.form}>
         <input

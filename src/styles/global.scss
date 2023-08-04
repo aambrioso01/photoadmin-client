@@ -3,7 +3,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(51, 51, 51);
+  background-color: vars.$blackish;
+  color: vars.$blackish;
+  max-width: 100%;
   color: whitesmoke;
 }
 
@@ -22,12 +24,15 @@ button {
 }
 
 .header {
+  position: fixed;
+  z-index: 9999;
   width: 100%;
   height: 60px;
   background-color: vars.$primary;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: rgba(135, 135, 244, 0.25) 0px 2px 5px -1px, rgba(255, 255, 255, 0.3) 0px 1px 3px -1px;
 
   .nav {
     margin-inline-start: 2rem;
@@ -36,18 +41,27 @@ button {
     justify-content: center;
 
     a {
+      font-size: 1rem;
       margin: 0.5rem;
       padding: 0.2rem;
-      width: 5rem;
+      width: 10ch;
       height: 2rem;
-      border-radius: 5px;
-      background-color: whitesmoke;
-      color: vars.$blackish;
+      border-radius: 10px;
+      background-color: rgb(46, 61, 154);
+      color: whitesmoke;
       display: flex;
       align-items: center;
       justify-content: center;
 
-      &>*{
+      &:hover {
+        opacity: 0.9;
+        text-shadow: 2px 2px black;
+        transition: all ease-in-out 200ms;
+        transform: scale(0.98);
+        cursor: pointer;
+      }
+
+      &>* {
         padding-inline: 1px;
       }
     }

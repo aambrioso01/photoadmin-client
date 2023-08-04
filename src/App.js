@@ -15,6 +15,7 @@ import { AiFillHome } from "react-icons/ai";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdCreate } from "react-icons/md";
+import { Landing } from "./pages/Landing/Landing";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -59,7 +60,9 @@ function App() {
           <>
             <div className="header">
               <span className="nav">
-                <img width={50} height={50} src="/logo.png" alt="logo" />
+                <Link to="/" style={{ background: "transparent" , padding: "0", margin: "0"}}>
+                  <img width={50} height={50} src="/logo.png" alt="logo" />
+                </Link>
                 <Link to="/login"><AiOutlineLogin /> Login</Link>
                 <Link to="/signup"><MdCreate /> Sign up</Link>
               </span>
@@ -68,8 +71,10 @@ function App() {
         ) : (
           <div className="header">
             <span className="nav">
-              <img width={50} height={50} src="/logo.png" alt="logo" />
-              <Link to="/"><AiFillHome /> Home</Link>
+              <Link to="/" style={{ background: "transparent" }}>
+                <img width={50} height={50} src="/logo.png" alt="logo" />
+              </Link>
+              <Link to="/home"><AiFillHome /> Home</Link>
               <Link to="addphoto"><AiOutlineCloudUpload /> Upload</Link>
             </span>
             <span className="currentUser">
@@ -80,7 +85,8 @@ function App() {
         )}
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/addphoto" element={<AddPhoto />} />
           {/* <Route path="/addphoto2" element={<AddPhoto2 />} /> */}
           <Route path="/photo/:id" element={<Photo />} />
