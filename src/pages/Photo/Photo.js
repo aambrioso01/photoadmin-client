@@ -74,7 +74,7 @@ export const Photo = () => {
         },
       })
       .then(() => {
-        navigate("/");
+        navigate("/home");
       });
   };
 
@@ -90,8 +90,8 @@ export const Photo = () => {
           },
         }
       );
-      
-      setPhoto({...photo, title: newTitle });
+
+      setPhoto({ ...photo, title: newTitle });
     } else {
       let newDescription = prompt("Enter new description:");
       axios.put(
@@ -102,41 +102,42 @@ export const Photo = () => {
             accessToken: localStorage.getItem("accessToken"),
           },
         }
-        );
-        setPhoto({...photo, description : newDescription });
-      }
-    };
+      );
+      setPhoto({ ...photo, description: newDescription });
+    }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.photo}>
         <img src={photo.filePath} alt={photo.description} />
       </div>
-      <div className={styles.info}>
-        <h1
-          onClick={() => {
-            if (authState.username === photo.username) {
-              editPhoto("title");
-            }
-          }}
-        >
-          {photo.title}
-        </h1>
-        <p
-          onClick={() => {
-            if (authState.username === photo.username) {
-              editPhoto("description");
-            }
-          }}
-        >
-          {photo.description}
-        </p>
-        <p>created by <b>{photo.username}</b></p>
-        {authState.username === photo.username && (
-          <button onClick={() => deletePhoto(photo.id)}>Delete</button>
-        )}
+      <div className={styles.infoWrap} >
+        <div className={styles.info}>
+          <h1
+            onClick={() => {
+              if (authState.username === photo.username) {
+                editPhoto("title");
+              }
+            }}
+          >
+            {photo.title}
+          </h1>
+          <p
+            onClick={() => {
+              if (authState.username === photo.username) {
+                editPhoto("description");
+              }
+            }}
+          >
+            {photo.description}
+          </p>
+          <p>created by @<b>{` ${photo.username}`}</b></p>
+          {authState.username === photo.username && (
+            <button onClick={() => deletePhoto(photo.id)}>Delete</button>
+          )}
+        </div>
       </div>
-
       <div className={form.container}>
         <div className={form.form}>
           <input
@@ -166,6 +167,6 @@ export const Photo = () => {
           })}
         </div>
       </div>
-    </div>
+    </div >
   );
 };

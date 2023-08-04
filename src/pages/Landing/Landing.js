@@ -22,7 +22,7 @@ export const Landing = () => {
         <img src="/photoscope-big.png" width={500} alt="photoscope" />
       </div>
       <div className={styles.buttons}>
-        <button onClick={handleHomeButton} className={styles.pushFlat}>view public gallery</button> <button onClick={handleLoginButton} className={styles.pushSkeuo}>login to upload</button>
+        <button onClick={handleHomeButton} className={styles.pushFlat}>public gallery</button> <button onClick={handleLoginButton} className={styles.pushSkeuo}>login to upload</button>
       </div>
       <Kaleidoscope />
     </>
