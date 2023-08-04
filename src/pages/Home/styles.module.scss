@@ -1,16 +1,24 @@
 @use "../../styles/vars.module.scss";
 
-.container {
+.home {
   width: 100%;
   height: auto;
+  padding-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.container {
+  width: calc(100% - 20px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));;
   gap: 10px;
-  padding-top: 80px;
+
 }
 
 .wrapper {
-  margin: 10px 0;
+  margin: 5px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,9 +33,8 @@
     flex-direction: column;
     border: 1px solid rgba(211, 211, 211, 0.337);
     font-family: Arial, Helvetica, sans-serif;
-  
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    transition: all 150ms;
+    transition: all ease-in-out 150ms;
   
     &:hover {
       box-shadow: rgba(252, 252, 252, 0.2) 0px 7px 29px 0px;
@@ -42,6 +49,12 @@
           #ff52e5,
           #f6d242
         ) border-box;
+
+        .footer {
+          border-bottom-left-radius: 15px;
+          border-bottom-right-radius: 15px;
+     
+        }
     }
   
     .description {
@@ -65,8 +78,8 @@
       align-items: center;
       background-color: vars.$primary;
       color: white;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
   
       label {
         float: right;

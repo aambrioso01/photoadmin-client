@@ -76,34 +76,36 @@ export const Home = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        {photos.map((value, key) => {
+      <div className={styles.home}>
+        <div className={styles.container}>
+          {[...photos].reverse().map((value, key) => {
 
-          return (
-            <div key={value.id} className={styles.wrapper}>
-              <div key={key} className={styles.photo}>
-                <div
-                  className={styles.description}
-                  style={{ backgroundImage: `url("${value.filePath}")` }}
-                  onClick={() => {
-                    navigate(`/photo/${value.id}`);
-                  }}
-                >
-                </div>
-                <div className={styles.footer}>
-                  <p className={styles.title}>{value.title}</p>
-                  {/* <p className={styles.creator}><a href={`profile/${value.UserId}`}>{value.username}</a></p> */}
-                  {/* <ThumbUpIcon
+            return (
+              <div key={value.id} className={styles.wrapper}>
+                <div key={key} className={styles.photo}>
+                  <div
+                    className={styles.description}
+                    style={{ backgroundImage: `url("${value.filePath}")` }}
+                    onClick={() => {
+                      navigate(`/photo/${value.id}`);
+                    }}
+                  >
+                  </div>
+                  <div className={styles.footer}>
+                    <p className={styles.title}>{value.title}</p>
+                    {/* <p className={styles.creator}><a href={`profile/${value.UserId}`}>{value.username}</a></p> */}
+                    {/* <ThumbUpIcon
                     onClick={() => {
                       likePhoto(value.id);
                     }}
                     className={!likedPhotos.includes(value.id) ? styles.unlike : ""}
                   /> */}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
       {/* <Kaleidoscope /> */}
     </>
