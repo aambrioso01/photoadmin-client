@@ -34,3 +34,23 @@
 .error {
   color: vars.$error;
 }
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.74);
+  border-left: 4px solid #000;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  animation: spin 1s linear infinite;
+  margin-top: 20px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
