@@ -11,6 +11,7 @@ export const AddPhoto = () => {
   const [file, setFile] = useState({});
   const navigate = useNavigate();
   const { authState } = useContext(AuthCtx);
+  const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
     title: "",
@@ -19,7 +20,7 @@ export const AddPhoto = () => {
   }
 
   useEffect(() => {
-    if(!localStorage.getItem('accessToken')) { //!authState.status
+    if (!localStorage.getItem('accessToken')) { //!authState.status
       navigate("/login");
     }
   }, []);
@@ -31,44 +32,56 @@ export const AddPhoto = () => {
   })
 
   const onSubmit = async (data) => {
+    setIsLoading(true);
     const formData = new FormData();
 
     formData.append('file', file, file.name);
     formData.append('title', data.title);
     formData.append('description', data.description);
 
-    axios.post(`${process.env.REACT_APP_API_ROUTE}/photos`, formData, { headers: {accessToken: localStorage.getItem("accessToken")} }).then((response) => {
-    });
-    
-    await new Promise((r) => setTimeout(r, 1000));
+    axios.post(`${process.env.REACT_APP_API_ROUTE}/photos`, formData, { headers: { accessToken: localStorage.getItem("accessToken") } })
+      .then(response => {
+        // PUT request was successful
+        setIsLoading(false);
 
-    navigate("/home"); 
+        // Redirect to home page once PUT request is complete
+        navigate('/home');
+      }).catch(error => {
+        // Handle error
+        console.error('Error updating data:', error);
+        setIsLoading(false);
+      });
   }
 
   return (
     <div className={styles.container}>
-        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-          <Form className={styles.form}>
-            <ErrorMessage name="title" component="span" className={styles.error} />
-            <Field className={styles.input} id="inputTitle" name="title" placeholder="Title" />
+      {isLoading ? (
+        <p>Uploading photo...</p>
+      ) : (
+        <></>
+      )}
+      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+        <Form className={styles.form}>
+          <ErrorMessage name="title" component="span" className={styles.error} />
+          <Field className={styles.input} id="inputTitle" name="title" placeholder="Title" />
 
-            <ErrorMessage name="description" component="span" className={styles.error} />
-            <Field className={styles.input} id="inputDescr" name="description" placeholder="Description" />
+          <ErrorMessage name="description" component="span" className={styles.error} />
+          <Field className={styles.input} id="inputDescr" name="description" placeholder="Description" />
 
-            {/* <ErrorMessage name="file" component="span" className={styles.error} /> */}
-            {/* <Field id="inputAddPhoto" name="file" type="file" onChange={(event) => {
+          {/* <ErrorMessage name="file" component="span" className={styles.error} /> */}
+          {/* <Field id="inputAddPhoto" name="file" type="file" onChange={(event) => {
                     this.setState("file", event.currentTarget.files[0]);
             }}/> */}
 
-            <input className={styles.file} id="file" name="file" type="file" onChange={(event) => {
-              setFile(event.currentTarget.files[0]);
-            }} />
+          <input className={styles.file} id="file" name="file" type="file" onChange={(event) => {
+            setFile(event.currentTarget.files[0]);
+          }} />
 
-            {/* <Field id="file" name="file" type="file" /> */}
+          {/* <Field id="file" name="file" type="file" /> */}
 
-            <button type="submit">Add Photo</button>
-          </Form>
-        </Formik>
+          <button type="submit">Add Photo</button>
+        </Form>
+      </Formik>
     </div>
   )
 }

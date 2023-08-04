@@ -66,7 +66,6 @@ export const Kaleidoscope = () => {
 
     for (let i = -1; i < 6; i += 1) {
       scene.add(getHex(i));
-      scene.background = new THREE.Color("rgb(25, 25, 25)");
     }
 
     // debug view

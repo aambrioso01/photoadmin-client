@@ -1,16 +1,24 @@
 @use "../../styles/vars.module.scss";
 
-.container {
+.home {
   width: 100%;
   height: auto;
+  padding-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.container {
+  width: calc(100% - 20px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));;
   gap: 10px;
-  padding-top: 80px;
+
 }
 
 .wrapper {
-  margin: 10px 0;
+  margin: 5px 0;
   display: flex;
   justify-content: center;
   align-items: center;
