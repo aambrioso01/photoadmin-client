@@ -42,7 +42,7 @@ export const AddPhoto = () => {
     
     await new Promise((r) => setTimeout(r, 1000));
 
-    navigate("/"); 
+    navigate("/home"); 
   }
 
   return (
