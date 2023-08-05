@@ -2,27 +2,27 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from "./styles.module.scss";
 import { Kaleidoscope } from "./Kaleidoscope";
+import { AiOutlineLogin } from "react-icons/ai";
+import { TfiGallery } from "react-icons/tfi";
 
 export const Landing = () => {
   const navigate = useNavigate();
 
-  const handleHomeButton = () => {
-    // Use the 'push' method of 'history' to navigate to the desired page
-    navigate('/home');
+  const handleGalleryButton = () => {
+    navigate('/Gallery');
   };
 
   const handleLoginButton = () => {
-    // Use the 'push' method of 'history' to navigate to the desired page
     navigate('/login');
   };
 
   return (
     <>
       <div className={styles.banner}>
-        <img src="/photoscope-big.png" width={500} alt="photoscope" />
-      </div>
-      <div className={styles.buttons}>
-        <button onClick={handleHomeButton} className={styles.pushFlat}>public gallery</button> <button onClick={handleLoginButton} className={styles.pushSkeuo}>login to upload</button>
+        <img src="/logo.png" width={200} alt="photoscope" />
+        <div className={styles.buttons}>
+          <button onClick={handleGalleryButton}><TfiGallery />public gallery</button> <button onClick={handleLoginButton}><AiOutlineLogin /> login to upload</button>
+        </div>
       </div>
       <Kaleidoscope />
     </>

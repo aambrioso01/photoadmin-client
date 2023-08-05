@@ -74,7 +74,7 @@ export const Photo = () => {
         },
       })
       .then(() => {
-        navigate("/home");
+        navigate("/gallery");
       });
   };
 

@@ -14,76 +14,88 @@ a {
   color: whitesmoke;
 }
 
-button {
-  font-size: 1rem;
-  margin: 0.5rem;
-  padding: 0.1rem;
-  width: 10ch;
-  height: 2rem;
-  border-radius: 10px;
-  background-color: rgb(46, 61, 154);
-  color: whitesmoke;
-  outline: transparent;
-  border: none;
-
-  &:hover {
-    opacity: 0.9;
-    text-shadow: 2px 2px black;
-    transition: all ease-in-out 200ms;
-    transform: scale(0.98);
-    cursor: pointer;
+.currentUser {
+  &>* {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  b {
+    padding-inline: 5px;
+    font-size: 1.3rem;
   }
 }
 
-.header {
-  position: fixed;
+.logout {
+  background-color: none;
+}
+
+/* HamburgerMenu.css */
+
+.hamburger-menu {
+  position: absolute;
   z-index: 9999;
-  width: 100%;
-  height: 60px;
-  background-color: vars.$primary;
+  right: 5px;
+  top: 5px;
+}
+
+.menu-button {
+  width: 30px;
+  height: 24px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-  box-shadow: rgba(135, 135, 244, 0.25) 0px 2px 5px -1px, rgba(255, 255, 255, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
+}
 
-  .nav {
-    margin-inline-start: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.bar {
+  width: 100%;
+  height: 4px;
+  background-color: white;
+  transition: transform 0.3s, opacity 0.3s;
+}
 
-    a {
-      font-size: 1rem;
-      margin: 0.5rem;
-      padding: 0.2rem;
-      width: 10ch;
-      height: 2rem;
-      border-radius: 10px;
-      background-color: rgb(46, 61, 154);
-      color: whitesmoke;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.open .bar:first-child {
+  transform: translateY(8px) rotate(45deg);
+}
 
-      &:hover {
-        opacity: 0.9;
-        text-shadow: 2px 2px black;
-        transition: all ease-in-out 200ms;
-        transform: scale(0.98);
-        cursor: pointer;
-      }
+.open .bar:nth-child(2) {
+  opacity: 0;
+}
 
-      &>* {
-        padding-inline: 1px;
-      }
-    }
+.open .bar:last-child {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin-top: 5px;
+  margin-inline-end: 10px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+
+  &>* {
+    padding-block: 5px;
   }
+}
 
-  .currentUser {
-    display: flex;
-    align-items: center;
-    margin-inline-end: 2rem;
-    flex-direction: column;
-    height: 50px;
-  }
+.open.menu-items {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 99999;
+
 }

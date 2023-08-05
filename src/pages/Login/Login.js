@@ -9,34 +9,34 @@ import styles from "../../styles/form.module.scss";
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const {setAuthState} = useContext(AuthCtx);
+  const { setAuthState } = useContext(AuthCtx);
   const navigate = useNavigate();
 
-  
+
   const login = () => {
-    const data = {username: username, password: password}
-    
+    const data = { username: username, password: password }
+
     axios.post(`${process.env.REACT_APP_API_ROUTE}/auth/login`, data).then((response) => {
-        if (response.data.error) alert(response.data.error);
-        else {
-          localStorage.setItem("accessToken", response.data.token);
-          setAuthState({
-            username: response.data.username,
-            id: response.data.id,
-            status: true,
-          });
-          navigate("/home");
-        }
+      if (response.data.error) alert(response.data.error);
+      else {
+        localStorage.setItem("accessToken", response.data.token);
+        setAuthState({
+          username: response.data.username,
+          id: response.data.id,
+          status: true,
+        });
+        navigate("/gallery");
+      }
     })
   };
 
   return (
     <div className={styles.container}>
 
-      <span className={styles.banner}>
-        <img src="/photoscope-big.png" width={300} alt="photoscope"/>
-        <img src="/logo.png" width={50} alt="photoscope"/>
-      </span>
+      <a href="/" className={styles.banner}>
+        <img src="/photoscope-big.png" width={300} alt="photoscope" />
+        <img src="/logo.png" width={50} alt="photoscope" />
+      </a>
 
       <div className={styles.form}>
         <input
@@ -55,7 +55,9 @@ export const Login = () => {
             setPassword(event.target.value);
           }}
         />
-      <button onClick={login}>Login</button>
+        <button onClick={login}>Login</button>
+
+        <p>Don't have an account? <a href="/signup">Sign up</a></p>
       </div>
     </div>
   );
