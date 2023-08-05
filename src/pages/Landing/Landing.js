@@ -19,7 +19,8 @@ export const Landing = () => {
   return (
     <>
       <div className={styles.banner}>
-        <img src="/logo.png" width={200} alt="photoscope" />
+        <img src="/photoscope-big.png" width={500} alt="photoscope" />
+        <img className={styles.logo} src="/logo.png" width={75} alt="photoscope" />
         <div className={styles.buttons}>
           <button onClick={handleGalleryButton}><TfiGallery />public gallery</button> <button onClick={handleLoginButton}><AiOutlineLogin /> login to upload</button>
         </div>
