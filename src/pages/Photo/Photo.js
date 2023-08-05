@@ -132,7 +132,7 @@ export const Photo = () => {
           >
             {photo.description}
           </p>
-          <p>created by @<b>{` ${photo.username}`}</b></p>
+          <b>{` ${photo.username}`}</b>
           {authState.username === photo.username && (
             <button onClick={() => deletePhoto(photo.id)}>Delete</button>
           )}
