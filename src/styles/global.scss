@@ -56,7 +56,7 @@ a {
 }
 
 .open .bar:first-child {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(8px) rotate(55deg);
 }
 
 .open .bar:nth-child(2) {
@@ -64,7 +64,7 @@ a {
 }
 
 .open .bar:last-child {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-55deg);
 }
 
 .menu-items {
