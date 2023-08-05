@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { AddPhoto } from "./pages/AddPhoto/AddPhoto";
 import { Photo } from "./pages/Photo/Photo";
@@ -16,8 +16,20 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdCreate } from "react-icons/md";
 import { Landing } from "./pages/Landing/Landing";
+import { TfiGallery } from "react-icons/tfi";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // // Close the menu when the route changes
+  // useEffect(() => {
+  //   setIsOpen(false);
+  // }, [navigate]); // This effect will run whenever navigate changes
+
   const [authState, setAuthState] = useState({
     username: "",
     id: 0,
@@ -58,37 +70,47 @@ function App() {
       <BrowserRouter>
         {!authState.status ? (
           <>
-            <div className="header">
-              <span className="nav">
-                <Link to="/" style={{ background: "transparent" , padding: "0", margin: "0"}}>
-                  <img width={50} height={50} src="/logo.png" alt="logo" />
-                </Link>
+            <div className="hamburger-menu">
+              <div className={`menu-button ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                <div className="bar"></div>
+                <div className="bar"></div>
+                <div className="bar"></div>
+              </div>
+              <ul className={`menu-items ${isOpen ? 'open' : ''}`}>
+                <span className="currentUser">
+                  <Link to="/"><img width={20} src="logo.png" alt=""/><b>Photoscope</b></Link>
+                </span>
                 <Link to="/login"><AiOutlineLogin /> Login</Link>
                 <Link to="/signup"><MdCreate /> Sign up</Link>
-              </span>
+                <Link to="/gallery"><TfiGallery /> Gallery</Link>
+              </ul>
             </div>
           </>
         ) : (
-          <div className="header">
-            <span className="nav">
-              <Link to="/" style={{ background: "transparent" }}>
-                <img width={50} height={50} src="/logo.png" alt="logo" />
-              </Link>
-              <Link to="/home"><AiFillHome /> Home</Link>
-              <Link to="addphoto"><AiOutlineCloudUpload /> Upload</Link>
-            </span>
-            <span className="currentUser">
-              <b>{authState.username}</b>
-              <button onClick={logout}>Logout</button>
-            </span>
-          </div>
+
+          <>
+            <div className="hamburger-menu">
+              <div className={`menu-button ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                <div className="bar"></div>
+                <div className="bar"></div>
+                <div className="bar"></div>
+              </div>
+              <ul className={`menu-items ${isOpen ? 'open' : ''}`}>
+                <span className="currentUser">
+                  <b>{authState.username}</b>
+                </span>
+                <Link to="/gallery"><TfiGallery /> Gallery</Link>
+                <Link to="addphoto"><AiOutlineCloudUpload /> Upload</Link>
+                <button className="logout" onClick={logout}>Logout</button>
+              </ul>
+            </div>
+          </>
         )}
 
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/gallery" element={<Home />} />
           <Route path="/addphoto" element={<AddPhoto />} />
-          {/* <Route path="/addphoto2" element={<AddPhoto2 />} /> */}
           <Route path="/photo/:id" element={<Photo />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/signup" element={<Signup />} />
@@ -97,7 +119,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
-    </AuthCtx.Provider>
+    </AuthCtx.Provider >
   );
 }
 

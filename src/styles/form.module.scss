@@ -51,12 +51,17 @@
         button {
             font-size: 1rem;
             margin: 0.5rem;
-            padding: 0.4rem;
-            width: 12ch;
+            padding: 1rem;
+            width: auto;
             height: 2rem;
             border-radius: 10px;
-            background-color: rgb(46, 61, 154);
+            background-color: vars.$purp;
             color: whitesmoke;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: transparent;
+            border: none;
 
             &:hover {
                 opacity: 0.9;
@@ -67,5 +72,8 @@
             }
         }
 
+        a {
+            color: vars.$primary;
+        }
     }
 }

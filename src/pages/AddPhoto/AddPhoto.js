@@ -45,8 +45,8 @@ export const AddPhoto = () => {
         // PUT request was successful
         setIsLoading(false);
 
-        // Redirect to home page once PUT request is complete
-        navigate('/home');
+        // Redirect to gallery page once PUT request is complete
+        navigate('/gallery');
       }).catch(error => {
         // Handle error
         console.error('Error updating data:', error);
