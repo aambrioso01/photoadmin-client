@@ -4,8 +4,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 60px);
     flex-direction: column;
+    height: auto;
+    margin-block: 50px;
 
     .banner {
         img {
@@ -20,7 +21,7 @@
     }
 
     .form {
-        padding-block: 2rem;
+        padding-block: 20px;
         display: flex;
         flex-direction: column;
         justify-content: center;
