@@ -42,7 +42,7 @@ export const Signup = () => {
           })
           await new Promise((r) => setTimeout(r, 500));
           alert(`Hello ${data.username}! Your account has been created.`);
-          navigate("/");
+          navigate("/login");
         }}
         validationSchema={validationSchema}
       >

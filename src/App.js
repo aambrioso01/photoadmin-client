@@ -17,6 +17,8 @@ import { AiOutlineLogin } from "react-icons/ai";
 import { MdCreate } from "react-icons/md";
 import { Landing } from "./pages/Landing/Landing";
 import { TfiGallery } from "react-icons/tfi";
+import { IoCreate } from "react-icons/io5";
+import { GeneratePhoto } from "./pages/AddPhoto/Generate/GeneratePhoto"
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,6 +65,8 @@ function App() {
       id: 0,
       status: false,
     });
+
+    // navigate("/login");
   };
 
   return (
@@ -100,8 +104,9 @@ function App() {
                   <b>{authState.username}</b>
                 </span>
                 <Link to="/gallery"><TfiGallery /> Gallery</Link>
-                <Link to="addphoto"><AiOutlineCloudUpload /> Upload</Link>
-                <button className="logout" onClick={logout}>Logout</button>
+                <Link to="/addphoto"><AiOutlineCloudUpload /> Upload</Link>
+                <Link to="/genphoto"><IoCreate /> Generate</Link>
+                <Link to="/login"><button className="logout" onClick={logout}>Logout</button></Link>
               </ul>
             </div>
           </>
@@ -111,6 +116,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/gallery" element={<Home />} />
           <Route path="/addphoto" element={<AddPhoto />} />
+          <Route path="/genphoto" element={<GeneratePhoto />} />
           <Route path="/photo/:id" element={<Photo />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/signup" element={<Signup />} />
